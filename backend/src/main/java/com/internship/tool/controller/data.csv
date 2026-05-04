@@ -1,0 +1,10 @@
+1,Unsafe Ladder,OPEN,HIGH,2026-05-01
+2,Oil Spill Near Machine,CLOSED,MEDIUM,2026-05-02
+3,Loose Electrical Wire,OPEN,HIGH,2026-05-03
+4,Blocked Emergency Exit,IN_PROGRESS,CRITICAL,2026-05-03
+5,Improper PPE Usage,OPEN,LOW,2026-05-04
+6,Slippery Floor,CLOSED,MEDIUM,2026-05-04
+7,Faulty Fire Extinguisher,OPEN,CRITICAL,2026-05-05
+8,Overloaded Circuit,IN_PROGRESS,HIGH,2026-05-05
+9,Broken Safety Guard,OPEN,MEDIUM,2026-05-06
+10,Unlabeled Chemical Container,CLOSED,LOW,2026-05-06
