@@ -207,36 +207,38 @@ export default function Home() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       {/* 🔷 Sidebar */}
-      <aside className="w-60 bg-gray-900 text-white p-5">
-        <h2 className="text-xl font-bold mb-6">Dashboard</h2>
+      <aside className="w-full md:w-60 bg-gray-900 text-white p-4 md:p-5 flex md:flex-col justify-between md:justify-start md:min-h-screen sticky top-0 z-10">
+        <h2 className="text-xl font-bold mb-0 md:mb-6 hidden md:block">Dashboard</h2>
 
-        <div className="flex items-center gap-2 mb-4 cursor-pointer hover:text-blue-400" onClick={() => navigate("/home")}>
-          <FaHome /> Home
+        <div className="flex md:flex-col gap-4 md:gap-0 w-full justify-around md:justify-start overflow-x-auto">
+          <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 mb-0 md:mb-4 cursor-pointer hover:text-blue-400" onClick={() => navigate("/home")}>
+            <FaHome className="text-xl md:text-base"/> <span className="text-xs md:text-base">Home</span>
+          </div>
+
+          <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 mb-0 md:mb-4 cursor-pointer hover:text-blue-400" onClick={() => window.scrollTo(0, document.body.scrollHeight)}>
+            <FaPlus className="text-xl md:text-base"/> <span className="text-xs md:text-base">Add</span>
+          </div>
+
+          <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2 mb-0 md:mb-4 cursor-pointer hover:text-blue-400" onClick={() => navigate("/analytics")}>
+            <FaChartBar className="text-xl md:text-base"/> <span className="text-xs md:text-base">Analytics</span>
+          </div>
+
+          <button
+            onClick={() => {
+              logout();
+              navigate("/");
+            }}
+            className="flex flex-col md:flex-row items-center gap-1 md:gap-2 mt-0 md:mt-10 bg-red-500 px-3 py-2 rounded hover:bg-red-600 text-xs md:text-base"
+          >
+            <FaSignOutAlt className="text-xl md:text-base"/> <span className="hidden md:inline">Logout</span>
+          </button>
         </div>
-
-        <div className="flex items-center gap-2 mb-4 cursor-pointer hover:text-blue-400" onClick={() => window.scrollTo(0, document.body.scrollHeight)}>
-          <FaPlus /> Add Report
-        </div>
-
-        <div className="flex items-center gap-2 mb-4 cursor-pointer hover:text-blue-400" onClick={() => navigate("/analytics")}>
-          <FaChartBar /> Analytics
-        </div>
-
-        <button
-          onClick={() => {
-            logout();
-            navigate("/");
-          }}
-          className="flex items-center gap-2 mt-10 bg-red-500 px-3 py-2 rounded hover:bg-red-600"
-        >
-          <FaSignOutAlt /> Logout
-        </button>
       </aside>
 
       {/* 🔷 Main Content */}
-      <main className="flex-1 p-6">
+      <main className="flex-1 p-4 md:p-6 w-full max-w-full overflow-hidden">
         {/* 🔷 Profile + Dark Toggle */}
         <div className="bg-white dark:bg-gray-800 p-4 rounded shadow mb-6 flex justify-between items-center">
           <div>
@@ -392,8 +394,8 @@ export default function Home() {
         </div>
 
         {/* 🔷 Table */}
-        <div className="bg-white dark:bg-gray-800 rounded shadow overflow-hidden">
-          <table className="w-full text-center">
+        <div className="bg-white dark:bg-gray-800 rounded shadow overflow-x-auto">
+          <table className="w-full text-center whitespace-nowrap md:whitespace-normal">
             <thead className="bg-gray-800 text-white">
               <tr>
                 <th className="p-2">S.No</th>

@@ -1,6 +1,6 @@
-Title,Description,Status,Severity,Location
-"Exposed Wiring","Found exposed wiring near the water cooler","OPEN","High","Main Lobby"
-"Slippery Floor","Water spill in hallway 3 not cleaned up","CLOSED","Medium","Hallway 3"
-"Missing Signage","Fire exit sign missing above door A","OPEN","Low","Door A"
-"Blocked Pathway","Boxes stacked in front of emergency exit","OPEN","High","Warehouse Section C"
-"Broken Handrail","Handrail loose on the main staircase","CLOSED","Medium","Staircase 1"
+
+"Exposed Wiring","Found exposed wiring near the water cooler",OPEN,"High","Main Lobby"
+"Slippery Floor","Water spill in hallway 3 not cleaned up",CLOSED,"Medium","Hallway 3"
+"Missing Signage","Fire exit sign missing above door A",OPEN,"Low","Door A"
+"Blocked Pathway","Boxes stacked in front of emergency exit",OPEN,"High","Warehouse Section C"
+"Broken Handrail","Handrail loose on the main staircase",CLOSED,"Medium","Staircase 1"
