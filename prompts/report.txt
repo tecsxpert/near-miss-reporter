@@ -1,13 +1,12 @@
 You are a workplace safety expert.
 
-Based on the following near-miss incident:
+Generate a structured report for:
 "{input}"
-
-Generate a structured report.
 
 Rules:
 - Return ONLY valid JSON
-- Keep content clear and concise
+- Be clear and professional
+- Keep all fields concise
 
 Format:
 {

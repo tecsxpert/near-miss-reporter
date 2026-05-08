@@ -4,23 +4,26 @@ import time
 
 load_dotenv()
 
-# 🔹 Import blueprints
+# 🚀 Startup preload
+print("🚀 Starting AI Service...")
+MODEL_READY = True
+print("✅ AI Model preloaded successfully")
+
 from routes.describe import describe_bp
 from routes.recommend import recommend_bp
 from routes.report import report_bp
 
-# 🔹 Import metrics
 from services.metrics import START_TIME, response_times
 
 app = Flask(__name__)
 
-# 🔹 Register routes
+# 🔹 Register APIs
 app.register_blueprint(describe_bp)
 app.register_blueprint(recommend_bp)
 app.register_blueprint(report_bp)
 
 
-# 🔐 SECURITY HEADERS (IMPORTANT)
+# 🔐 Security headers
 @app.after_request
 def add_security_headers(response):
     response.headers["X-Content-Type-Options"] = "nosniff"
@@ -31,19 +34,23 @@ def add_security_headers(response):
     return response
 
 
-# 🔹 Health endpoint
+# 🔹 Health check
 @app.route("/health")
 def health():
     uptime = time.time() - START_TIME
 
+    # 🔥 Use last 5 responses (better average)
+    recent = response_times[-5:]
+
     avg_time = (
-        sum(response_times) / len(response_times)
-        if response_times else 0
+        sum(recent) / len(recent)
+        if recent else 0
     )
 
     return {
         "status": "ok",
         "model": "llama-3.3-70b-versatile",
+        "model_ready": MODEL_READY,
         "uptime_seconds": round(uptime, 2),
         "avg_response_time": round(avg_time, 2)
     }

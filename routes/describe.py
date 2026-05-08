@@ -6,38 +6,39 @@ from services.metrics import response_times
 import json
 import time
 
-# Create a blueprint for /describe API
 describe_bp = Blueprint("describe", __name__)
 
 
-# Function to load prompt file and insert user input
 def load_prompt(text):
     with open("prompts/describe.txt", "r") as f:
         template = f.read()
     return template.replace("{input}", text)
 
 
-# POST /describe endpoint
 @describe_bp.route("/describe", methods=["POST"])
 def describe():
     start = time.time()
 
     data = request.get_json()
 
-    # 🔐 Input validation
     if not data or "text" not in data:
         return jsonify({"error": "Missing text"}), 400
 
-    text = data["text"]
+    raw_text = data["text"]
 
-    if not isinstance(text, str) or len(text.strip()) == 0:
+    if not isinstance(raw_text, str) or len(raw_text.strip()) == 0:
         return jsonify({"error": "Invalid input"}), 400
 
-    if len(text) > 500:
+    if len(raw_text) > 500:
         return jsonify({"error": "Input too long"}), 400
 
-    # 🔹 Check cache
-    cached = get_from_cache(text)
+    # Normalize input
+    text = raw_text.strip().lower()
+
+    # ✅ FIX: Unique cache key per endpoint
+    cache_key = f"describe:{text}"
+
+    cached = get_from_cache(cache_key)
     if cached:
         return jsonify(cached)
 
@@ -49,12 +50,12 @@ def describe():
         ai_response = None
 
     if not ai_response:
-     return jsonify({
-        "description": "AI service unavailable, please try again later",
-        "risk_level": "medium",
-        "is_fallback": True,
-        "generated_at": datetime.utcnow().isoformat()
-    })
+        return jsonify({
+            "description": "AI service unavailable, please try again later",
+            "risk_level": "medium",
+            "is_fallback": True,
+            "generated_at": datetime.utcnow().isoformat()
+        })
 
     try:
         parsed = json.loads(ai_response)
@@ -72,7 +73,8 @@ def describe():
         "generated_at": datetime.utcnow().isoformat()
     }
 
-    set_cache(text, result)
+    # ✅ Store with namespaced key
+    set_cache(cache_key, result)
 
     response_times.append(time.time() - start)
 

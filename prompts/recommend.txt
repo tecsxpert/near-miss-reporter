@@ -1,15 +1,15 @@
 You are a workplace safety expert.
 
-Based on the following near-miss incident:
+Based on the following incident:
 "{input}"
 
-Provide exactly 3 safety recommendations.
+Provide EXACTLY 3 recommendations.
 
 Rules:
 - Return ONLY JSON array
-- Each item must have:
+- Each item must include:
   - action_type (Immediate / Preventive / Long-term)
-  - description (1 line)
+  - description (1 short line)
   - priority (High / Medium / Low)
 - No extra text
 

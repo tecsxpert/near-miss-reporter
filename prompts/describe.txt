@@ -4,13 +4,13 @@ Analyze the following near-miss incident:
 "{input}"
 
 Rules:
-- Keep description maximum 2 lines
-- Be clear and concise
+- Keep description max 2 lines
+- Be clear and professional
 - Classify risk correctly
-- Do not include any text outside JSON
+- Return ONLY valid JSON (no extra text)
 
-Respond ONLY in valid JSON format:
+Format:
 {
   "description": "...",
-  "risk_level": "low/medium/high"
+  "risk_level": "low | medium | high"
 }
