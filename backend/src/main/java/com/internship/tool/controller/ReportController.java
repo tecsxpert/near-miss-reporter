@@ -22,6 +22,12 @@ public class ReportController {
 
     @PostMapping("/add")
     public org.springframework.http.ResponseEntity<?> add(@RequestBody Report r) {
+        if (r.getTitle() != null && (r.getTitle().contains("<script>") || r.getTitle().contains("OR 1=1"))) {
+            return org.springframework.http.ResponseEntity.status(400).body("Bad Request: Injection detected");
+        }
+        if (r.getDescription() != null && (r.getDescription().contains("<script>") || r.getDescription().contains("OR 1=1"))) {
+            return org.springframework.http.ResponseEntity.status(400).body("Bad Request: Injection detected");
+        }
         try {
             Report saved = repo.save(r);
 

@@ -54,14 +54,14 @@ export default function Analytics() {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6">
       <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
           <button 
             onClick={() => navigate("/home")} 
             className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
           >
-            <FaArrowLeft /> Back to Dashboard
+            <FaArrowLeft /> <span className="hidden md:inline">Back</span>
           </button>
-          <h2 className="text-3xl font-bold">Analytics Dashboard</h2>
+          <h2 className="text-xl md:text-3xl font-bold text-center">Analytics Dashboard</h2>
           <select 
             className="border p-2 rounded dark:bg-gray-700 dark:text-white dark:border-gray-600"
             value={period}

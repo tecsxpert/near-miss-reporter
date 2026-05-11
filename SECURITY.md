@@ -18,6 +18,6 @@ We consider the following to be critical vulnerabilities:
 - Unauthorized Data Access
 
 ## Security Features Implemented
-- **Authentication**: JWT/Token-based session management.
-- **Headers**: Strict-Transport-Security, X-Frame-Options, X-Content-Type-Options, XSS-Protection applied in the Flask app.
-- **Input Validation**: Prepared statements (JPA) prevent SQL injection.
+- **Authentication**: Basic custom authentication matching username/password with database records.
+- **Headers**: CORS policy configured globally via `@CrossOrigin` in Spring Boot controllers.
+- **Input Validation**: Prepared statements (JPA/Hibernate) prevent SQL injection. Basic payload inspection prevents common XSS and SQLi payloads.
