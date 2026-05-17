@@ -1,0 +1,8 @@
+{
+  "pythonVersion": "3.13",
+  "typeCheckingMode": "standard",
+  "reportMissingModuleSource": "none",
+  "stubPath": "typestubs",
+  "useLibraryCodeForTypes": true,
+  "reportMissingTypeStubs": false
+}
